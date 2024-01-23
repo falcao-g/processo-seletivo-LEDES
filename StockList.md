@@ -49,6 +49,7 @@ HTML, CSS, JS, Node.js, Express, PostgreSQL.
 - Falcão
 - Matheus
 - Eos
+- Pedro Varela
 
 **Back-end:**
 - Wagner
@@ -58,13 +59,18 @@ HTML, CSS, JS, Node.js, Express, PostgreSQL.
 
 **Tipo de Crachá:**
 
-**Frente:**
 - Foto
-- Primeiro nome
-
-**Atrás:**
 - Nome completo
 - Cargo
 - CPF
 - Data de nascimento
-- ID
+- Matrícula
+
+# 23/01 (20:00) 
+
+- **Entrada dos participantes:**
+  - Pedro Varela
+
+# 23/01 (20:34) - Reunião de Alinhamento 
+  - Resolução do Front-end;
+  - Resolução do Back-end.
