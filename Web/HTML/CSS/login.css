@@ -1,0 +1,96 @@
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            background-color:#1C2F40;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        .custom-div {
+            width: 60%; /* decrease width */
+            height: 80%; /* increase height */
+            position: absolute;
+            top: 5%; /* adjust top position to center the div */
+            left: 20%; /* adjust left position to center the div */
+            border-radius: 16px;
+            background-color: #FFFFFF;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .custom-div h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 36px;
+            font-weight: 400;
+            line-height: 36px;
+            letter-spacing: 0em;
+            text-align: center;
+        }
+
+        .custom-div input {
+            width: 100%;
+            height: 72.24px;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid transparent;
+            margin-bottom: 10px;
+            background-color: #F0EFFF;
+        }
+
+        .custom-div input::placeholder {
+            color: #A7A3FF;
+        }
+
+        .custom-div .submit-button {
+            background-color: #3B383D;
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            .custom-div {
+                width: 60%;
+                left: 20%;
+            }
+
+            .custom-div input {
+                width: 80%;
+            }
+        }
+
+        .input-field {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .password-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .password-wrapper input[type="password"] {
+            width: 100%;
+            padding-right: 40px; /* space for the button */
+            box-sizing: border-box; /* include padding in element's total width */
+        }
+        
+        .eye-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        
+        .eye-button img {
+            height: 20px;
+            width: 20px;
+        }
