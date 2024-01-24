@@ -7,10 +7,10 @@ const CREATED = 201;
 async function signup(req, res) {
   try {
     const {
-      name, cpf, role, dateOfBirth, password,
+      name, cpf, role, dateOfBirth, password, image,
     } = req.body;
-    const message = await controller.registerUser(name, cpf, role, dateOfBirth, password);
-    res.status(CREATED).send({ message });
+    const data = await controller.registerUser(name, cpf, role, dateOfBirth, password, image);
+    res.status(CREATED).send({ data });
   } catch (err) {
     res.status(err.httpStatus ?? 500).send({ message: err.message });
   }

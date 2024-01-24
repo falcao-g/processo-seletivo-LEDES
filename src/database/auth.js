@@ -2,16 +2,16 @@ const { v4 } = require('uuid');
 
 module.exports = (knex) => {
   async function findOne(register) {
-    const item = await knex('usuario')
+    const item = await knex('user')
       .select('*')
-      .where({ matricula: register })
+      .where({ register })
       .first();
 
     return item;
   }
 
   async function findOneByCPF(cpf) {
-    const item = await knex('usuario')
+    const item = await knex('user')
       .select('*')
       .where({ cpf })
       .first();
@@ -21,17 +21,30 @@ module.exports = (knex) => {
 
   async function registerUser(user) {
     const uuid = v4();
-    await knex('usuario').insert({
+    const {
+      register, name, cpf, role, dateOfBirth, image,
+    } = user;
+    console.log(register);
+    await knex('user').insert({
       uuid,
-      matricula: user.register,
-      nome: user.name,
-      cpf: user.cpf,
-      cargo: user.role,
-      dataNascimento: user.dateOfBirth,
+      register,
+      name,
+      cpf,
+      role,
+      dateOfBirth,
       password: user.encryptedPassword,
+      image,
     });
 
-    return 'Usuário cadastrado com sucesso!';
+    return {
+      register,
+      name,
+      cpf,
+      role,
+      dateOfBirth,
+      situation: 'ANALYSIS',
+      image,
+    };
   }
 
   return { findOne, registerUser, findOneByCPF };
