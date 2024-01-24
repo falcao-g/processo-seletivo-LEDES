@@ -1,5 +1,6 @@
 const express = require('express');
 const authRouter = require('./auth/auth.route');
+const adminRouter = require('./admin/admin.route');
 require('dotenv').config();
 
 const app = express();
@@ -12,6 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', authRouter);
+app.use('/admin', adminRouter);
 
 app.listen(port, () => {
   console.log(`Servidor iniciado http://localhost:${port}`);
