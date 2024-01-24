@@ -17,7 +17,7 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: "main"
-          JAVASCRIPT_ES_CONFIG_FILE: ../../.eslintrc
+          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
           VALIDATE_JAVASCRIPT: true
           FILTER_REGEX_INCLUDE: .*src/.*
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
