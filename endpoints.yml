@@ -1,0 +1,236 @@
+openapi: 3.0.3
+info:
+  title:  PS LEDES 2024
+  version: 1.0.0
+tags:
+  - name: auth
+    description: Authenticate the user
+  - name: user
+    description: See and change player information
+  - name: admin
+    description: Approve and disapprove user's requests
+paths:
+  /auth/signup:
+    post:
+      tags:
+        - auth
+      summary: Register an user
+      description: Register a new user
+      requestBody:
+        required: true
+        content:
+          applications/json:
+              schema:
+                $ref: '#/components/schemas/SignUpInfo'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        '400':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: Login a player
+      description: Authenticate the player
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginInfo'
+      responses:
+        '200':
+          description: Player authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '401':
+          description: Player not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /user:
+    get:
+      tags:
+        - user
+      summary: Shows authenticated user info
+      responses:
+        '200':
+          description: All user info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - user
+      summary: Edits authenticated user info
+      requestBody:
+        required: true
+        content:
+          applications/json:
+            schema:
+              $ref: '#/components/schemas/EditUserInfo'
+                
+      responses:
+        '200':
+          description: User info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /admin/approve:
+    post:
+      tags:
+        - admin
+      summary: Approve request change from user
+      parameters:
+        - name: register
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Succesfully approved changes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /admin/disapprove:
+    post:
+      tags:
+        - admin
+      summary: Disapprove request change from user
+      parameters:
+        - name: register
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully disapproved changes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+          format: jwt
+    SuccessMessage:
+      type: object
+      properties:
+        message:
+          type: string
+    UserInfo:
+      type: object
+      properties:
+        register:
+          type: integer
+        name:
+          type: string
+        cpf:
+          type: string
+        role:
+          type: string
+        situation:
+          type: string
+          enum:
+            - ANALYSIS
+            - APPROVED
+            - DISAPPROVED
+        dateOfBirth:
+          type: string
+        image:
+          type: string
+          format: binary
+    EditUserInfo:
+      type: object
+      properties:
+        register:
+          type: integer
+        name:
+          type: string
+        cpf:
+          type: string
+        role:
+          type: string
+        dateOfBirth:
+          type: string
+        image:
+          type: string
+          format: binary
+    SignUpInfo:
+      type: object
+      properties:
+        password:
+          type: string
+        name:
+          type: string
+        cpf:
+          type: string
+        role:
+          type: string
+        dateOfBirth:
+          type: string
+        image:
+          type: string
+          format: binary
+    LoginInfo:
+      type: object
+      properties:
+        register:
+          type: integer
+        password:
+          type: string
