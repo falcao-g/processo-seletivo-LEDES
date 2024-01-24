@@ -115,3 +115,9 @@ body{
 .data {
   margin-bottom: 20px;
 }
+
+.white-bar {
+  background-color: white; /* cor de fundo branca */
+  height: 1px; /* altura da barra */
+  width: 60%; /* largura da barra */
+}
