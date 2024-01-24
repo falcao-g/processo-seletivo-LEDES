@@ -10,7 +10,7 @@ exports.up = (knex) => knex.schema.createTable('usuario', (table) => {
   table.string('password', 100).notNullable();
   table.binary('foto');
   table.date('dataNascimento').notNullable();
-  table.integer('matricula').notNullable();
+  table.integer('matricula').unique().notNullable();
   table.enum('situacaoCracha', ['ANALISE', 'APROVADO', 'RECUSADO']).defaultTo('ANALISE');
   table.enum('papel', ['ADMIN', 'USER']).defaultTo('USER');
 });
