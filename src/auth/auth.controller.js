@@ -13,20 +13,21 @@ async function encryptPassword(password) {
   return encryptedPassword;
 }
 
-async function registerUser(name, cpf, role, dateOfBirth, password) {
+async function registerUser(name, cpf, role, dateOfBirth, password, image) {
   if (!name) throw new ValidationError('O nome é obrigatório');
   if (!cpf) throw new ValidationError('O CPF é obrigatório');
   if (!role) throw new ValidationError('O cargo é obrigatório');
   if (!dateOfBirth) throw new ValidationError('A data de nascimento é obrigatória');
   if (!password) throw new ValidationError('A senha é obrigatória');
+  if (!image) throw new ValidationError('A imagem é obrigatória');
   const register = Math.floor(Math.random() * 1000000);
   const encryptedPassword = await encryptPassword(password);
   await checkIfUserExists(cpf);
   const user = {
-    register, name, cpf, role, dateOfBirth, encryptedPassword,
+    register, name, cpf, role, dateOfBirth, encryptedPassword, image,
   };
-  const message = await database.auth.registerUser(user);
-  return message;
+  const data = await database.auth.registerUser(user);
+  return data;
 }
 
 async function getUserByRegister(register) {
