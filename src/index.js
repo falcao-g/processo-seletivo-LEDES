@@ -1,5 +1,6 @@
 const express = require('express');
 const authRouter = require('./auth/auth.route');
+const authService = require("./auth/auth.service");
 require('dotenv').config();
 
 const app = express();
@@ -16,3 +17,7 @@ app.use('/auth', authRouter);
 app.listen(port, () => {
   console.log(`Servidor iniciado http://localhost:${port}`);
 });
+
+
+app.post('/signup', authService.signup);
+app.post('/login', authService.login);

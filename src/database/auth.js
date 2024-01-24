@@ -29,9 +29,18 @@ module.exports = (knex) => {
       cargo: user.role,
       dataNascimento: user.dateOfBirth,
       password: user.encryptedPassword,
+      foto : user.foto,
     });
 
-    return 'Usuário cadastrado com sucesso!';
+    return {
+      matricula : user.register,
+      nome : user.nome,
+      cpf: user.cpf,
+      cargo: user.role,
+      data_nascimento: user.dateOfBirth,
+      situacao : "ANALISE",
+      foto : user.foto
+    };
   }
 
   return { findOne, registerUser, findOneByCPF };

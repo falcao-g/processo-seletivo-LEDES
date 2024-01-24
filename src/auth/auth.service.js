@@ -7,12 +7,12 @@ const CREATED = 201;
 async function signup(req, res) {
   try {
     const {
-      name, cpf, role, dateOfBirth, password,
+      nome, cpf, cargo, data_nascimento, senha, foto
     } = req.body;
-    const message = await controller.registerUser(name, cpf, role, dateOfBirth, password);
-    res.status(CREATED).send({ message });
+    const data = await controller.registerUser(nome, cpf, cargo, data_nascimento, senha , foto);
+    res.status(CREATED).send({ data: data });
   } catch (err) {
-    res.status(err.httpStatus ?? 500).send({ message: err.message });
+    res.status(err.httpStatus).send({ message: err.message });
   }
 }
 
@@ -30,7 +30,7 @@ async function login(req, res) {
       res.status(OK).send({ message: 'Login feito com sucesso!' });
     });
   } catch (err) {
-    res.status(err.httpStatus ?? 500).send({ message: err.message });
+    res.status(err.httpStatus).send({ message: err.message });
   }
 }
 

@@ -9,24 +9,22 @@ async function checkIfUserExists(cpf) {
 
 async function encryptPassword(password) {
   const saltRounds = 10;
-  const encryptedPassword = await bcrypt.hash(password, saltRounds);
-  return encryptedPassword;
+  return await bcrypt.hash(password, saltRounds);
 }
 
-async function registerUser(name, cpf, role, dateOfBirth, password) {
+async function registerUser(name, cpf, cargo, dateOfBirth, password , foto) {
   if (!name) throw new ValidationError('O nome é obrigatório');
   if (!cpf) throw new ValidationError('O CPF é obrigatório');
-  if (!role) throw new ValidationError('O cargo é obrigatório');
+  if (!cargo) throw new ValidationError('O cargo é obrigatório');
   if (!dateOfBirth) throw new ValidationError('A data de nascimento é obrigatória');
   if (!password) throw new ValidationError('A senha é obrigatória');
   const register = Math.floor(Math.random() * 1000000);
   const encryptedPassword = await encryptPassword(password);
   await checkIfUserExists(cpf);
   const user = {
-    register, name, cpf, role, dateOfBirth, encryptedPassword,
+    register, name, cpf, role: cargo, dateOfBirth, encryptedPassword, foto
   };
-  const message = await database.auth.registerUser(user);
-  return message;
+  return await database.auth.registerUser(user);
 }
 
 async function getUserByRegister(register) {
