@@ -17,7 +17,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .error-icon {
-  background: url("/src/images/error.png") no-repeat center center;
+  background: url("../images/error.png") no-repeat center center;
   background-size: contain;
   width: 40%;
   height: 50%;
