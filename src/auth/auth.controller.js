@@ -3,8 +3,8 @@ const { database } = require('../database/knex');
 const { ValidationError } = require('../error/ValidationError');
 
 async function checkIfUserExists(cpf) {
-  const player = await database.auth.findOneByCPF(cpf);
-  if (player) throw new ValidationError('Usuário já cadastrado!');
+  const user = await database.auth.findOneByCPF(cpf);
+  if (user) throw new ValidationError('Usuário já cadastrado!');
 }
 
 async function encryptPassword(password) {
