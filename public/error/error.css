@@ -15,19 +15,21 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 .error-icon {
   background: url("../images/error.png") no-repeat center center;
   background-size: contain;
   width: 40%;
-  height: 50%;
-  margin: 0 auto;
+  height: 20%;
+  align-self: center;
 }
 .error-message {
   font-size: 20px;
   font-weight: bold;
   color: white;
-  margin: 60px 0 40px;
 }
 .cancel-button {
   font-size: 18px;
