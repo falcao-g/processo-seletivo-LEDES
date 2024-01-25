@@ -2,11 +2,12 @@
   "name": "cracha",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev:start": "nodemon ./src/index.js",
-    "prepare": "husky install"
+    "start": "node ./src/server.js",
+    "dev:start": "nodemon ./src/server.js",
+    "prepare": "husky install",
+    "test": "jest"
   },
   "lint-staged": {
     "src/**/*.js": "eslint --fix"
@@ -15,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.2",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
@@ -31,6 +33,7 @@
     "husky": "^8.0.3",
     "jest": "^29.7.0",
     "lint-staged": "^15.2.0",
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "supertest": "^6.3.4"
   }
 }
