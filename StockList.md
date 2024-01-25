@@ -86,9 +86,18 @@ HTML, CSS, JS, Node.js, Express, PostgreSQL.
  - Resolução do Front-end;
  - Resolução do Back-end.
 
-- Participantes:
+## Participantes:
  - Gabriel;
  - Matheus;
  - Pedro;
  - Davi;
  - Wagner. 
+
+# 25/01 (20:00) -> (20:17) - Reunião de Alinhamento
+ - Resolução do Front-end;
+ - Resolução do Back-end. 
+
+## Participantes:
+ - Matheus;
+ - Gabriel;
+ - Davi. 
