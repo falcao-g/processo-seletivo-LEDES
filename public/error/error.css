@@ -1,0 +1,43 @@
+body {
+  font-family: "Poppins";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #1c2f40;
+}
+.error-container {
+  width: 50%;
+  height: 50%;
+  text-align: center;
+  background-color: #5c6975;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.error-icon {
+  background: url("../images/error.png") no-repeat center center;
+  background-size: contain;
+  width: 40%;
+  height: 50%;
+  margin: 0 auto;
+}
+.error-message {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin: 60px 0 40px;
+}
+.cancel-button {
+  font-size: 18px;
+  background-color: #1c2f40;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cancel-button:hover {
+  background-color: #777;
+}

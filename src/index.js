@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const authRouter = require('./auth/auth.route');
 require('dotenv').config();
 
@@ -7,9 +8,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Cracha-LEDES!');
-});
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/auth', authRouter);
 
