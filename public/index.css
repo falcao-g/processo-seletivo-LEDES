@@ -211,6 +211,10 @@ body {
 
 @media only screen and (max-width: 625px) {
 
+    .img-none, .text-none{
+        display: none;
+    }
+    
     .container::before,
     .container.sign-in::before,
     .container.sign-up::before {
