@@ -2,11 +2,12 @@
   "name": "cracha",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev:start": "nodemon ./src/index.js",
-    "prepare": "husky install"
+    "start": "node ./src/server.js",
+    "dev:start": "nodemon ./src/server.js",
+    "prepare": "husky install",
+    "test": "jest"
   },
   "lint-staged": {
     "src/**/*.js": "eslint --fix"
@@ -20,6 +21,7 @@
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
     "pg": "^8.11.3",
+    "supertest": "^6.3.4",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
