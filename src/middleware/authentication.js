@@ -3,7 +3,6 @@ const { AuthenticationError } = require('../error/AuthenticationError');
 
 function authenticateToken(req, res, next) {
   try {
-    console.log(req.headers.cookie);
     if (req.headers.cookie == null) {
       throw new AuthenticationError();
     }
