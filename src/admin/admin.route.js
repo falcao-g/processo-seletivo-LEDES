@@ -7,5 +7,4 @@ const adminService = require('./admin.service');
 router.post('/change-situation', authenticateToken, adminService.changeSituation);
 router.get('/all-users', authenticateToken, adminService.alwaysUserAnalyse);
 
-
 module.exports = router;
