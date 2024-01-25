@@ -8,7 +8,7 @@ async function changeSituation(req, res) {
         await controller.changeSituation(register, situation);
         res.status(201).send();
     } catch (err) {
-        res.status(err.httpStatus).send({message: err.message});
+        res.status(err.httpStatus ?? 500).send({message: err.message});
     }
 }
 
@@ -18,7 +18,7 @@ async function alwaysUserAnalyse(req, res) {
         let data = await controller.alwaysUserAnalyse();
         res.status(201).send(data);
     } catch (err) {
-        res.status(err.httpStatus).send({message: err.message});
+        res.status(err.httpStatus ?? 500).send({message: err.message});
     }
 }
 
