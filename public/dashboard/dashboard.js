@@ -14,7 +14,6 @@ function edit(){
     const salvar = document.querySelector(".save-button");
     salvar.style.display = "inline";
 
-    document.querySelector(".input-matricula").value = document.querySelector(".matricula").innerText;
     document.querySelector(".input-nome").value = document.querySelector(".nome").innerText;
     document.querySelector(".input-nascimento").value = document.querySelector(".nascimento").innerText;
     document.querySelector(".input-cpf").value = document.querySelector(".cpf").innerText;
@@ -37,7 +36,6 @@ function save(){
     const salvar = document.querySelector(".save-button");
     salvar.style.display = "none";
 
-    document.querySelector(".matricula").innerText = document.querySelector(".input-matricula").value;
     document.querySelector(".nome").innerText = document.querySelector(".input-nome").value;
     document.querySelector(".nascimento").innerText = document.querySelector(".input-nascimento").value;
     document.querySelector(".cpf").innerText = document.querySelector(".input-cpf").value;
