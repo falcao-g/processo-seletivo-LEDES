@@ -191,8 +191,6 @@ components:
     EditUserInfo:
       type: object
       properties:
-        register:
-          type: integer
         name:
           type: string
         cpf:

@@ -10,7 +10,7 @@ async function signup(req, res) {
       name, cpf, role, dateOfBirth, password, image,
     } = req.body;
     const data = await controller.registerUser(name, cpf, role, dateOfBirth, password, image);
-    res.status(CREATED).send({ data });
+    res.status(CREATED).send(data);
   } catch (err) {
     res.status(err.httpStatus ?? 500).send({ message: err.message });
   }

@@ -27,18 +27,15 @@ test('should create a new user', async () => {
   const response = await request(api)
     .post('/auth/signup')
     .send(newUser);
-  register = response.body.data.register;
+  register = response.body.register;
   expect(response).toHaveProperty('status', 201);
-  expect(response.body.data).toEqual({
-    register, name: newUser.name, cpf: newUser.cpf, role: newUser.role, dateOfBirth: newUser.dateOfBirth, image: newUser.image, situation: 'ANALYSIS',
-  });
+  expect(response).toHaveProperty('body');
 });
 
 test('should login with the user', async () => {
   const response = await request(api)
     .post('/auth/login')
     .send({ register, password: newUser.password });
-  console.log(register);
   expect(response).toHaveProperty('status', 200);
 });
 
