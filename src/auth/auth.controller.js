@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const { database } = require('../database/knex');
 const { ValidationError } = require('../error/ValidationError');
 
