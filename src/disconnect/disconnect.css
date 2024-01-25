@@ -1,0 +1,82 @@
+body {
+  font-family: "Poppins";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #1c2f40;
+}
+.disc-container {
+  width: 50%;
+  height: 50%;
+  text-align: center;
+  background-color: #5c6975;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.disc-message {
+  width: 80%;
+  padding: 10%;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin: auto;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30%;
+  width: 40%;
+  margin: auto;
+}
+
+.yes-button {
+  font-size: 18px;
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.no-button {
+  font-size: 18px;
+  background-color: rgb(186, 43, 43);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.no-button:hover {
+  background-color: #777;
+}
+
+.yes-button:hover {
+  background-color: #777;
+}
+
+@media screen and (max-width: 600px) {
+  .buttons {
+    grid-template-columns: 0;
+  }
+
+  .no-button {
+    width: 100px;
+  }
+
+  .yes-button {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .buttons {
+    margin: 20%;
+  }
+}
