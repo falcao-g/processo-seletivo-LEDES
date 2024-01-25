@@ -12,6 +12,10 @@ module.exports = (knex) => {
            return result;
         });
     }
+    async function alwaysUserAnalyse(){
+        return knex.select('uuid','name','cpf','image','dateOfBirth','register','situation').table('user')
+            .where({situation: "ANALYSIS", type : "USER"});
+    }
 
-    return { updateSituation };
+    return { updateSituation , alwaysUserAnalyse };
 };

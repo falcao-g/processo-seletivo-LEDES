@@ -12,6 +12,17 @@ async function changeSituation(req, res) {
     }
 }
 
+async function alwaysUserAnalyse(req, res) {
+    try {
+
+        let data = await controller.alwaysUserAnalyse();
+        res.status(201).send(data);
+    } catch (err) {
+        res.status(err.httpStatus).send({message: err.message});
+    }
+}
+
 module.exports = {
-    changeSituation
+    changeSituation,
+    alwaysUserAnalyse
 };
