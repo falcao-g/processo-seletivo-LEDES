@@ -17,5 +17,12 @@ module.exports = (knex) => {
             .where({situation: "ANALYSIS", type : "USER"});
     }
 
-    return { updateSituation , alwaysUserAnalyse };
+    async function findOne(register) {
+        return await knex('user')
+            .select('*')
+            .where({register})
+            .first();
+    }
+
+    return { updateSituation , alwaysUserAnalyse , findOne };
 };
