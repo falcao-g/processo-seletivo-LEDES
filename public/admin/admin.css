@@ -10,7 +10,7 @@ body {
     text-align: left;
     font-weight: bold; /* torna o texto em negrito */
     width: 80%; /* diminui o tamanho da div para 80% da largura total */
-    
+    border-radius: 20px;
 }
 
 .yellow-button{
@@ -89,4 +89,74 @@ li::after {
     text-align: left;
     font-weight: bold; /* torna o texto em negrito */
     width: 80%; /* diminui o tamanho da div para 80% da largura total */
+}
+
+.green-button, .yellow-button, .red-button {
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.yellow-button {
+    background-color: yellow;
+}
+
+.green-button {
+    background-color: green;
+}
+
+.red-button {
+    background-color: red;
+}
+
+li {
+    padding: 10px;
+    margin: 10px auto;
+    text-align: left;
+    font-weight: bold;
+    width: 80%;
+}
+
+h1 {
+    font-size: 2.5em; /* tamanho padrão */
+}
+
+@media screen and (max-width: 600px) {
+    .green-button, .yellow-button, .red-button {
+        width: 30px;
+        height: 30px;
+    }
+
+    li {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 2em; /* tamanho menor para telas pequenas */
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .green-button, .yellow-button, .red-button {
+        width: 25px;
+        height: 25px;
+    }
+
+    li {
+        width: 85%;
+    }
+
+    h1 {
+        font-size: 2.2em; /* tamanho intermediário para telas médias */
+    }
 }

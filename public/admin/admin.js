@@ -44,7 +44,7 @@ function showDetails(id) {
 
     if (details.style.display === 'block') {
         details.style.display = 'none';
-        return;  // Adicionando return para sair da função
+        return; 
     }
 
     details.innerHTML = `
