@@ -23,7 +23,7 @@
    <body>
       <div class="btn-redirect">
          <a href="../admin/admin.html">
-            <button class="btn-admin">Adiministrador</button>
+            <button id="only-admin" class="btn-admin">Adiministrador</button>
          </a>
          <a href="../disconnect/disconnect.html">
             <button class="btn-disconnect">Sair</button>
@@ -33,14 +33,14 @@
          <div class="left">
             <img src="https://wallpaperaccess.com/full/9224420.jpg" id="preverImage" alt="Formato incompátivel" width="100%" height="90%">
             <h1>Bachira</h1>
-            <p>Machine Learning Engineer</p>
-            <input type="file" id="file" onchange="alterar(event)">
+            <p id="role2">Machine Learning Engineer</p>
+            <input type="file" id="file" onchange="change(event)">
             <label for="file">Enviar Imagem</label>
          </div>
          <div class="right">
             <div class="info">
-                <div style="background-color: #4C6173; color: rgb(65, 235, 65);">
-                    <h4>Aprovado</h4>
+                <div id="situation" style="background-color: #4C6173; color: rgb(65, 235, 65);">
+                    <h4 id="situationText">Aprovado</h4>
                 </div>
                <h3>Informações
                   <button class="button edit-button" onclick="edit()"><img src="../images/botao_editar.png" width="20"></button>
@@ -48,26 +48,26 @@
                </h3>
                <div class="data">
                   <h4>Matrícula:</h4>
-                  <label class="lbl matricula" style="color: white;">111222333444</label>
+                  <label id="register" class="lbl matricula" style="color: white;">111222333444</label>
                </div>
                <div class="data">
                   <h4>Nome Completo:</h4>
-                  <label class="lbl nome" style="color: white;">Teste 1</label>
+                  <label id="name" class="lbl nome" style="color: white;">Teste 1</label>
                   <input type="text" class="input input-nome">
                </div>
                <div class="data">
                   <h4>Data de Nascimento</h4>
-                  <label class="lbl nascimento" style="color: white;">2004-01-25</label>
+                  <label id="dateOfBirth" class="lbl nascimento" style="color: white;">2004-01-25</label>
                   <input type="date" class="input input-nascimento">
                </div>
                <div class="data">
                   <h4>CPF:</h4>
-                  <label class="lbl cpf" style="color: white;">099.877.256-08</label>
+                  <label id="cpf" class="lbl cpf" style="color: white;">099.877.256-08</label>
                   <input type="text" class="input input-cpf">
                </div>
                <div class="data">
                   <h4>Cargo:</h4>
-                  <label class="lbl cargo" style="color: white;">Machine Learning Engineer</label>
+                  <label id="role" class="lbl cargo" style="color: white;">Machine Learning Engineer</label>
                   <input type="text" class="input input-cargo">
                   <br>
                </div>
@@ -75,5 +75,5 @@
          </div>
       </div>
    </body>
-   <script src="../Dashboard/dashboard.js"></script>
+   <script src="./dashboard.js"></script>
 </html>

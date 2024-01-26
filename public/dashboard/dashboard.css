@@ -14,11 +14,12 @@ body{
 }
 
 .btn-redirect{
-  margin-left: 45%;
   padding-top: 20px;
-  display:flex;
+  display: flex;
   border: none;
   text-align: center;
+  justify-content: flex-end;
+  padding-right: 2vh;
 }
 .btn-redirect a button{
   border-radius: 5px;
@@ -94,6 +95,8 @@ body{
     padding-bottom: 5px;
     border-bottom: 1px solid #e0e0e0;
     color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
   text-transform: uppercase;
   letter-spacing: 5px;
 }
@@ -124,11 +127,12 @@ body{
 
 .data {
   margin-bottom: 20px;
+  font-size: 2.5vh;
+  padding-top: 1vh;
 }
 
 .button{
   cursor:pointer;
-  margin-left: 45%;
   background-color: rgba(0,0,0,0);
   text-align: center;
   border: none;

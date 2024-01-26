@@ -10,7 +10,13 @@ async function signup(req, res) {
       name, cpf, role, dateOfBirth, password, image,
     } = req.body;
     const data = await controller.registerUser(name, cpf, role, dateOfBirth, password, image);
-    res.status(CREATED).send(data);
+    await jwt.sign(data, process.env.SECRET, (err, token) => {
+      if (err) throw err;
+
+      res.cookie('jwt', token, { httpOnly: true });
+
+      res.status(CREATED).send(data);
+    });
   } catch (err) {
     res.status(err.httpStatus ?? 500).send({ message: err.message });
   }
