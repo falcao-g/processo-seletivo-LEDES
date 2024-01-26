@@ -7,13 +7,13 @@ function toogleShowHideDetails(index) {
 
   if (!detailsContainer.innerHTML) {
     detailsContainer.innerHTML = `
-    <p>Register: ${user.register}</p>
-    <p>Name: ${user.name}</p>
-    <p>Date of Birth: ${user.dateOfBirth.slice(0, 10).split('-').reverse().join('/')}</p>
+    <p>Matrícula: ${user.register}</p>
+    <p>Nome: ${user.name}</p>
+    <p>Data de nascimento: ${user.dateOfBirth.slice(0, 10).split('-').reverse().join('/')}</p>
     <p>CPF: ${user.cpf.slice(0, 3).concat('.').concat(user.cpf.slice(3, 6)).concat('.')}</p>
-    <p>Role: ${user.role}</p>
-    <p>Situation: ${user.situation}</p>
-    <p>Image: ${user.image}</p>
+    <p>Cargo: ${user.role}</p>
+    <p>Situação do crachá: ${user.situation}</p>
+    <p>Foto: ${user.image}</p>
   `;
   } else {
     detailsContainer.innerHTML = '';
@@ -30,7 +30,7 @@ function listRequests() {
     listItem.id = `requirement-${index + 1}`;
 
     listItem.innerHTML = `
-      Requirement ${index + 1}
+      Pedido ${index + 1}
       <button class="yellow-button" onclick="toogleShowHideDetails(${index})">Show Details</button>
       <button class="red-button" onclick="setStatus('DISAPPROVED', this)">Set Disapproved</button>
       <button class="green-button" onclick="setStatus('APPROVED', this)">Set Approved</button>

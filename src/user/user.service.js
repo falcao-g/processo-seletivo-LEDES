@@ -14,9 +14,9 @@ async function getUser(req, res) {
 
 async function editUser(req, res) {
   try {
-    const { register } = req.user;
+    const { register, situation } = req.user;
     const user = req.body;
-    const data = await controller.editUserInfo(register, user);
+    const data = await controller.editUserInfo(register, situation, user);
     res.status(OK).send(data);
   } catch (err) {
     res.status(err.httpStatus ?? 500).send({ message: err.message });

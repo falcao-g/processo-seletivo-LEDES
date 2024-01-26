@@ -36,6 +36,7 @@ module.exports = (knex) => {
         role: user.role,
         dateOfBirth: user.dateOfBirth,
         image: user.image,
+        situation: 'ANALYSIS',
       });
 
     return findOne(user.register);

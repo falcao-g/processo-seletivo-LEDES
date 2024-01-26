@@ -12,8 +12,9 @@ async function getUserInfo(register) {
   return user;
 }
 
-async function editUserInfo(register, user) {
+async function editUserInfo(register, situation, user) {
   await checkIfUserExists(register);
+  if (situation === 'ANALYSIS') throw new ValidationError('Usuário em análise, não é possível editar!', 403);
   if (!user.name) throw new ValidationError('O nome é obrigatório');
   if (!user.cpf) throw new ValidationError('O CPF é obrigatório');
   if (!user.role) throw new ValidationError('O cargo é obrigatório');
