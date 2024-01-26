@@ -240,9 +240,6 @@ components:
           type: string
         dateOfBirth:
           type: string
-        image:
-          type: string
-          format: binary
     LoginInfo:
       type: object
       properties:

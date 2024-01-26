@@ -5,7 +5,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Tela de Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel="icon" href="../public/images/cracha.png" type="image/png">
+	<link rel="icon" href="./images/cracha.png" type="image/png">
     <link rel='stylesheet' type='text/css' media='screen' href='./index.css'>
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 </head>
@@ -19,29 +19,29 @@
 					<div class="form sign-up">
 						<div class="input-group">
 							<i class='fa fa-user'></i>
-							<input type="text" placeholder="Nome">
+							<input id="name" type="text" placeholder="Nome">
 						</div>
 						<div class="input-group">
 							<i class='fa fa-envelope'></i>
-							<input type="text" placeholder="CPF">
+							<input id="cpf" type="text" placeholder="CPF">
 						</div>
 						<div class="input-group">
 							<i class='fa fa-envelope'></i>
-							<input type="text" placeholder="Cargo">
+							<input id="role" type="text" placeholder="Cargo">
 						</div>
 						<div class="input-group">
 							<i class='fa fa-envelope'></i>
-							<input type="date" placeholder="Data de Nascimento">
+							<input id="dateOfBirth" type="date" placeholder="Data de Nascimento">
 						</div>
 						<div class="input-group">
 							<i class='fa fa-lock'></i>
-							<input type="password" placeholder="Senha">
+							<input id="password" type="password" placeholder="Senha">
 						</div>
 						<div class="input-group">
 							<i class='fa fa-lock'></i>
 							<input type="password" placeholder="Confirme sua Senha">
 						</div>
-						<button>
+						<button onclick="registerUser()">
 							Cadastre-se!
 						</button>
 						<p>
