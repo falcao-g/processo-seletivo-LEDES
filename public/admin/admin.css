@@ -3,11 +3,12 @@ body {
     background-color: #1C2F40;
 }
 .btn-redirect{
-    margin-left: 45%;
     padding-top: 20px;
     display:flex;
     border: none;
     text-align: center;
+    justify-content: flex-end;
+    padding-right: 2vh;
 }
 .btn-redirect a button{
     border-radius: 5px;

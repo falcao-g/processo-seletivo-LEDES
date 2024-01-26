@@ -1,7 +1,7 @@
 const { api } = require('./api');
 
-const port = process.env.PORT || 3000;
+const port = 8080;
 
 api.listen(port, () => {
-  console.log(`Servidor iniciado http://localhost:${port}`);
+  console.log('Servidor iniciado http://localhost:8080');
 });
