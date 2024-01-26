@@ -2,6 +2,31 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #1C2F40;
 }
+.btn-redirect{
+    margin-left: 45%;
+    padding-top: 20px;
+    display:flex;
+    border: none;
+    text-align: center;
+}
+.btn-redirect a button{
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+}
+  
+.btn-redirect .btn-admin{
+    background-color: #8293a3;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+  
+.btn-redirect .btn-disconnect{
+    background-color: #996767;
+    border: none;
+    cursor: pointer;
+}
 
 #requirement-list li {
     background-color: white;
