@@ -180,3 +180,11 @@ input[type="file"]:active + label {
 #role2 {
   font-size: 2.5vh;
 }
+
+#preverImage {
+  width: 90%;
+  height: 80%;
+  aspect-ratio: 1/1;
+  margin-top: clamp(0.5rem, 1vw, 1rem);
+  border-radius: 5px;
+}
