@@ -43,7 +43,7 @@ function save() {
   document.querySelector('.cargo').innerText = document.querySelector('.input-cargo').value;
 }
 
-function alterar(event) {
+function change(event) {
   const arquivoinserido = event.target;
   const prever = document.getElementById('preverImage');
 
@@ -58,3 +58,43 @@ function alterar(event) {
     console.log('Nenhum arquivo selecionado');
   }
 }
+
+function retrieveUserData() {
+  try {
+    fetch('http://localhost:8080/user', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        document.getElementById('register').innerText = data.register;
+        document.getElementById('name').innerText = data.name;
+        document.getElementById('dateOfBirth').innerText = data.dateOfBirth.slice(0, 10).split('-').reverse().join('/');
+        document.getElementById('cpf').innerText = data.cpf.slice(0, 3).concat('.').concat(data.cpf.slice(3, 6)).concat('.')
+          .concat(data.cpf.slice(6, 9))
+          .concat('-')
+          .concat(data.cpf.slice(9, 11));
+        document.getElementById('role').innerText = data.role;
+        document.getElementById('role2').innerText = data.role;
+        if (data.type !== 'ADMIN') {
+          document.getElementById('only-admin').style.display = 'none';
+        }
+        if (data.situation === 'ANALYSIS') {
+          document.getElementById('situation').style.color = '#FFC107';
+          document.getElementById('situationText').innerText = 'Em análise';
+        } else if (data.situation === 'APPROVED') {
+          document.getElementById('situation').style.color = '#28A745';
+          document.getElementById('situationText').innerText = 'Aprovado';
+        } else if (data.situation === 'DISAPPROVED') {
+          document.getElementById('situation').style.color = '#DC3545';
+          document.getElementById('situationText').innerText = 'Recusado';
+        }
+      });
+  } catch (error) {
+    window.location.href = 'http://localhost:8080/error/error.html';
+  }
+}
+
+retrieveUserData();
