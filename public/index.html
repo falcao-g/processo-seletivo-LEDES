@@ -41,6 +41,11 @@
 							<i class='fa fa-lock'></i>
 							<input type="password" placeholder="Confirme sua Senha">
 						</div>
+						<div class="input-group">
+							<input type="file" id="file" onchange="changeI(event)">
+							<label for="file">Envie a foto do Crachá</label>
+							<p id="fileName"></p>
+						</div><br>
 						<button onclick="registerUser()">
 							Cadastre-se!
 						</button>

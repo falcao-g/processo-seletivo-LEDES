@@ -275,3 +275,32 @@ body {
         font-size: 1.5rem;
     }
  }
+
+ input[type="file"] {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: transparent;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+input[type="file"] + label {
+  font-size: 1em;
+  font-weight: 700;
+  color: white;
+  background-color: #1653fa;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+input[type="file"]:focus + label,
+input[type="file"]:active + label {
+  outline: none;
+}

@@ -1,5 +1,23 @@
 /* eslint-disable no-undef */
 
+function changeI(event) {
+  var fileName = event.target.files[0].name;
+  document.getElementById('fileName').textContent = 'Imagem enviada: ' + fileName;
+  const arquivoinserido = event.target;
+  const prever = document.getElementById('preverImage');
+
+  if (arquivoinserido.files.length > 0) {
+    const arquivo = arquivoinserido.files[0];
+    const leitor = new FileReader();
+    leitor.onload = (e) => {
+      prever.src = e.target.result;
+    };
+    leitor.readAsDataURL(arquivo);
+  } else {
+    console.log('Nenhum arquivo selecionado');
+  }
+}
+
 const container = document.getElementById('container');
 
 toggle = () => {
