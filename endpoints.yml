@@ -104,17 +104,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
                 
-  /admin/change-situation:
+  /admin/review:
     post:
       tags:
         - admin
       summary: Approve or disapprove request change from user
-      parameters:
-        - name: register
-          in: query
-          required: true
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          applications/json:
+            schema:
+              $ref: '#/components/schemas/ChangeSituationInfo'
       responses:
         '200':
           description: Succesfully approved changes
@@ -141,6 +141,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    /admin/makeadmin:
+    post:
+      tags:
+        - admin
+      summary: Promote an user to admin
+      requestBody:
+        required: true
+        content:
+          applications/json:
+            properties:
+              register:
+                type: integer
+      responses:
+        '200':
+          description: User promoted to admin
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMessage'
         '401':
           description: Unauthorized
           content:
@@ -225,3 +251,13 @@ components:
           type: integer
         password:
           type: string
+    ChangeSituationInfo:
+      type: object
+      properties:
+        register:
+          type: integer
+        situation:
+          type: string
+          enum:
+            - APPROVED
+            - DISAPPROVED
