@@ -113,6 +113,7 @@ function retrieveUserData() {
         if (data.situation === 'ANALYSIS') {
           document.getElementById('situation').style.color = '#FFC107';
           document.getElementById('situationText').innerText = 'Em análise';
+          document.querySelector('.edit-button').style.display = 'none';
         } else if (data.situation === 'APPROVED') {
           document.getElementById('situation').style.color = '#28A745';
           document.getElementById('situationText').innerText = 'Aprovado';

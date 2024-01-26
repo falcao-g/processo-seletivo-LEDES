@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
+const { v4 } = require('uuid');
 const { api } = require('../src/api');
 const { database } = require('../src/database/knex');
 
@@ -8,18 +9,22 @@ let user;
 let userJWT;
 let editedUser;
 let dummyJWT;
+let userInAnalysis;
+let userInAnalysisJWT;
 
-beforeAll(async () => {
+beforeEach(async () => {
   user = {
+    uuid: v4(),
     name: 'teste',
     register: 66778899,
     cpf: '12345678910',
-    encryptedPassword: '123456',
+    password: '123456',
     role: 'CEO',
     dateOfBirth: '1998-11-11',
     image: 'teste',
+    situation: 'APPROVED',
   };
-  await database.auth.registerUser(user);
+  await database('user').insert(user);
   userJWT = jwt.sign(user, process.env.SECRET);
 
   editedUser = {
@@ -29,15 +34,34 @@ beforeAll(async () => {
     role: 'CTO',
     dateOfBirth: '1998-11-11',
     image: 'teste2',
+    situation: 'ANALYSIS',
   };
 
   dummyJWT = jwt.sign({ register: 12345678 }, process.env.SECRET);
+
+  userInAnalysis = {
+    uuid: v4(),
+    name: 'teste',
+    register: 223311,
+    cpf: 'cpf',
+    password: '123456',
+    role: 'CEO',
+    dateOfBirth: '1998-11-11',
+    image: 'teste',
+    situation: 'ANALYSIS',
+  };
+  await database('user').insert(userInAnalysis);
+  userInAnalysisJWT = jwt.sign(userInAnalysis, process.env.SECRET);
 });
 
-afterAll(async () => {
+afterEach(async () => {
   await database('user')
     .del()
     .where({ cpf: user.cpf });
+
+  await database('user')
+    .del()
+    .where({ cpf: userInAnalysis.cpf });
 });
 
 test('should get user info', async () => {
@@ -115,4 +139,12 @@ test('should not edit info of a user with a missing image', async () => {
     .set('Cookie', [`jwt=${userJWT}`])
     .send({ ...editedUser, image: undefined });
   expect(response).toHaveProperty('status', 400);
+});
+
+test("should not edit info of a user in 'ANALYSIS' situation", async () => {
+  const response = await request(api)
+    .put('/user')
+    .set('Cookie', [`jwt=${userInAnalysisJWT}`])
+    .send(userInAnalysis);
+  expect(response).toHaveProperty('status', 403);
 });
