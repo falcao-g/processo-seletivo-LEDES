@@ -34,6 +34,29 @@ registerUser = () => {
       }),
     }).then(() => { window.location.href = 'http://localhost:8080/dashboard/dashboard.html'; });
   } catch (error) {
-    console.log(error);
+    window.location.href = 'http://localhost:8080/error/error.html';
+  }
+};
+
+loginUser = () => {
+  const register = document.getElementById('register');
+  const password = document.getElementById('lpassword');
+
+  try {
+    fetch('http://localhost:8080/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        register: register.value,
+        password: password.value,
+      }),
+    })
+      .then(() => {
+        window.location.href = 'http://localhost:8080/dashboard/dashboard.html';
+      });
+  } catch (error) {
+    window.location.href = 'http://localhost:8080/error/error.html';
   }
 };
