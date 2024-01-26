@@ -12,7 +12,7 @@ function toogleShowHideDetails(index) {
     <p>Data de nascimento: ${user.dateOfBirth.slice(0, 10).split('-').reverse().join('/')}</p>
     <p>CPF: ${user.cpf.slice(0, 3).concat('.').concat(user.cpf.slice(3, 6)).concat('.')}</p>
     <p>Cargo: ${user.role}</p>
-    <p>Situação do crachá: ${user.situation}</p>
+    <p>Situação do crachá: Em análise</p>
     <p>Foto: ${user.image}</p>
   `;
   } else {
