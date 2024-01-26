@@ -17,11 +17,18 @@ async function changeSituation(register, situation) {
   return database.admin.updateSituation(user);
 }
 
-async function alwaysUserAnalyse() {
-  return database.admin.alwaysUserAnalyse();
+async function getPendingRequests() {
+  return database.admin.getUsers();
+}
+
+async function changeUserType(register) {
+  const user = await database.admin.findOne(register);
+  if (user.type === 'ADMIN') throw new ValidationError('O usuário já é um administrador');
+  return database.admin.promoteUser({ register });
 }
 
 module.exports = {
   changeSituation,
-  alwaysUserAnalyse,
+  getPendingRequests,
+  changeUserType,
 };

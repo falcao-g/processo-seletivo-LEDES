@@ -6,10 +6,13 @@ module.exports = (knex) => {
 
     await knex('user').where({ register }).update({
       situation,
-    }).then((result) => result);
+    });
+
+    return 'Situação atualizada com sucesso!';
   }
-  async function alwaysUserAnalyse() {
-    return knex.select('uuid', 'name', 'cpf', 'image', 'dateOfBirth', 'register', 'situation').table('user')
+
+  async function getUsers() {
+    return knex.select('name', 'cpf', 'image', 'dateOfBirth', 'register', 'role', 'situation').table('user')
       .where({ situation: 'ANALYSIS', type: 'USER' });
   }
 
@@ -20,5 +23,17 @@ module.exports = (knex) => {
       .first();
   }
 
-  return { updateSituation, alwaysUserAnalyse, findOne };
+  async function promoteUser(user) {
+    const { register } = user;
+
+    await knex('user').where({ register }).update({
+      type: 'ADMIN',
+    });
+
+    return 'Usuário promovido com sucesso!';
+  }
+
+  return {
+    updateSituation, getUsers, findOne, promoteUser,
+  };
 };
