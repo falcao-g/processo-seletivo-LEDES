@@ -32,7 +32,7 @@ registerUser = () => {
         password: password.value,
         image: 'imagem',
       }),
-    }).then(() => { window.location.href = 'http://localhost:8080/dashboard/dashboard.html'; });
+    }).then((response) => { if (response.ok) { window.location.href = 'http://localhost:8080/dashboard/dashboard.html'; } });
   } catch (error) {
     window.location.href = 'http://localhost:8080/error/error.html';
   }
@@ -53,8 +53,10 @@ loginUser = () => {
         password: password.value,
       }),
     })
-      .then(() => {
-        window.location.href = 'http://localhost:8080/dashboard/dashboard.html';
+      .then((response) => {
+        if (response.ok) {
+          window.location.href = 'http://localhost:8080/dashboard/dashboard.html';
+        }
       });
   } catch (error) {
     window.location.href = 'http://localhost:8080/error/error.html';

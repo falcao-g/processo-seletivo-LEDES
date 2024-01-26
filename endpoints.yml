@@ -213,6 +213,33 @@ components:
         image:
           type: string
           format: binary
+    DetailedUserInfo:
+      type: object
+      properties:
+        register:
+          type: integer
+        name:
+          type: string
+        cpf:
+          type: string
+        role:
+          type: string
+        situation:
+          type: string
+          enum:
+            - ANALYSIS
+            - APPROVED
+            - DISAPPROVED
+        dateOfBirth:
+          type: string
+        image:
+          type: string
+          format: binary
+        type:
+          type: string
+          enum:
+            - ADMIN
+            - USER
     EditUserInfo:
       type: object
       properties:

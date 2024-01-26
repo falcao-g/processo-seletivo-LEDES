@@ -22,6 +22,7 @@ module.exports = (knex) => {
       situation: user.situation,
       dateOfBirth: user.dateOfBirth,
       image: user.image,
+      type: user.type,
     };
   }
 

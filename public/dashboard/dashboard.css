@@ -127,6 +127,8 @@ body{
 
 .data {
   margin-bottom: 20px;
+  font-size: 2.5vh;
+  padding-top: 1vh;
 }
 
 .button{

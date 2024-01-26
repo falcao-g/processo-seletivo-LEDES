@@ -1,71 +1,79 @@
-const usersDetails = [{
-    "register": 0,
-    "name": "string",
-    "cpf": "string",
-    "role": "string",
-    "situation": "ANALYSIS",
-    "dateOfBirth": "string",
-    "image": "string"
-  }];
+/* eslint-disable no-unused-vars */
+let userDetails;
 
-const userDetails = [
-    {
-        "register": 1,
-        "name": "Alice Johnson",
-        "cpf": "123.456.789-01",
-        "role": "Software Developer",
-        "situation": "ANALYSIS",
-        "dateOfBirth": "1995-05-15",
-        "image": "alice.jpg"
-    },
-    {
-        "register": 2,
-        "name": "Bob Smith",
-        "cpf": "987.654.321-09",
-        "role": "Project Manager",
-        "situation": "APPROVED",
-        "dateOfBirth": "1988-12-10",
-        "image": "bob.jpg"
-    },
-    {
-        "register": 3,
-        "name": "Charlie Brown",
-        "cpf": "456.789.012-34",
-        "role": "QA Engineer",
-        "situation": "REJECTED",
-        "dateOfBirth": "1990-07-20",
-        "image": "charlie.jpg"
-    }
-];
+function toogleShowHideDetails(index) {
+  const detailsContainer = document.getElementById(`details-${index}`);
+  const user = userDetails[index];
 
-function showDetails(id) {
-    const details = document.getElementById(`details-${id}`);
-    const user = userDetails.find(user => user.register === id);
+  if (!detailsContainer.innerHTML) {
+    detailsContainer.innerHTML = `
+    <p>Register: ${user.register}</p>
+    <p>Name: ${user.name}</p>
+    <p>Date of Birth: ${user.dateOfBirth.slice(0, 10).split('-').reverse().join('/')}</p>
+    <p>CPF: ${user.cpf.slice(0, 3).concat('.').concat(user.cpf.slice(3, 6)).concat('.')}</p>
+    <p>Role: ${user.role}</p>
+    <p>Situation: ${user.situation}</p>
+    <p>Image: ${user.image}</p>
+  `;
+  } else {
+    detailsContainer.innerHTML = '';
+  }
 
-    if (details.style.display === 'block') {
-        details.style.display = 'none';
-        return; 
-    }
-
-    details.innerHTML = `
-        <p>Register: ${user.register}</p>
-        <p>Name: ${user.name}</p>
-        <p>Date of Birth: ${user.dateOfBirth}</p>
-        <p>CPF: ${user.cpf}</p>
-        <p>Role: ${user.role}</p>
-        <p>Situation: ${user.situation}</p>
-        <p>Image: ${user.image}</p>
-    `;
-
-    details.style.display = 'block';
+  detailsContainer.style.display = 'block';
 }
 
-let status;
-let clickedLiId;
+function listRequests() {
+  const listContainer = document.getElementById('requirement-list');
 
-function setStatus(value, buttonElement) {
-    status = value;
-    clickedLiId = buttonElement.parentNode.id;
-    console.log(status);
-    console.log(clickedLiId);
+  userDetails.forEach((user, index) => {
+    const listItem = document.createElement('li');
+    listItem.id = `requirement-${index + 1}`;
+
+    listItem.innerHTML = `
+      Requirement ${index + 1}
+      <button class="yellow-button" onclick="toogleShowHideDetails(${index})">Show Details</button>
+      <button class="red-button" onclick="setStatus('DISAPPROVED', this)">Set Disapproved</button>
+      <button class="green-button" onclick="setStatus('APPROVED', this)">Set Approved</button>
+      <div id="details-${index}" class="details"></div>
+    `;
+
+    listContainer.appendChild(listItem);
+  });
+}
+
+function getUserRequests() {
+  fetch('http://localhost:8080/admin/requests', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      userDetails = Array.of(...data);
+      listRequests();
+    });
+}
+
+getUserRequests();
+
+function setStatus(status, button) {
+  try {
+    fetch('http://localhost:8080/admin/review', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        register: userDetails[button.parentNode.id.split('-')[1] - 1].register,
+        situation: status,
+      }),
+    })
+      .then((response) => {
+        console.log(response.json());
+        button.parentNode.remove();
+      });
+  } catch (error) {
+    window.location.href = 'http://localhost:8080/error/error.html';
+  }
 }
