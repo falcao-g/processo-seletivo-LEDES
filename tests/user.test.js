@@ -16,8 +16,8 @@ beforeEach(async () => {
   user = {
     uuid: v4(),
     name: 'teste',
-    register: 66778899,
-    cpf: '12345678910',
+    register: 123,
+    cpf: '87654321',
     password: '123456',
     role: 'CEO',
     dateOfBirth: '1998-11-11',
@@ -29,8 +29,8 @@ beforeEach(async () => {
 
   editedUser = {
     name: 'testando',
-    register: 66778899,
-    cpf: '12345678910',
+    register: 746,
+    cpf: '0000',
     role: 'CTO',
     dateOfBirth: '1998-11-11',
     image: 'teste2',
@@ -58,6 +58,10 @@ afterEach(async () => {
   await database('user')
     .del()
     .where({ cpf: user.cpf });
+
+  await database('user')
+    .del()
+    .where({ cpf: editedUser.cpf });
 
   await database('user')
     .del()
