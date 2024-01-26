@@ -29,6 +29,64 @@ function edit() {
   document.querySelector('.input-cargo').value = document.querySelector('.cargo').innerText;
 }
 
+function change(event) {
+  const arquivoinserido = event.target;
+  const prever = document.getElementById('preverImage');
+
+  if (arquivoinserido.files.length > 0) {
+    const arquivo = arquivoinserido.files[0];
+    const leitor = new FileReader();
+    leitor.onload = (e) => {
+      prever.src = e.target.result;
+    };
+    leitor.readAsDataURL(arquivo);
+  } else {
+    console.log('Nenhum arquivo selecionado');
+  }
+}
+
+function retrieveUserData() {
+  try {
+    fetch('http://localhost:8080/user', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const [firstName] = data.name.split(' ');
+        document.getElementById('register').innerText = data.register;
+        document.getElementById('name').innerText = data.name;
+        document.getElementById('first-name').innerText = firstName;
+        document.getElementById('dateOfBirth').innerText = data.dateOfBirth.slice(0, 10).split('-').reverse().join('/');
+        document.getElementById('cpf').innerText = formatCPF(data.cpf);
+        document.getElementById('role').innerText = data.role;
+        document.getElementById('role2').innerText = data.role;
+        // change image, using the base64 file we have in data.image
+        document.getElementById('file').src = data.image;
+        if (data.type !== 'ADMIN') {
+          document.getElementById('only-admin').style.display = 'none';
+        }
+        if (data.situation === 'ANALYSIS') {
+          document.getElementById('situation').style.color = '#FFC107';
+          document.getElementById('situationText').innerText = 'Em análise';
+          document.querySelector('.edit-button').style.display = 'none';
+        } else if (data.situation === 'APPROVED') {
+          document.getElementById('situation').style.color = '#28A745';
+          document.getElementById('situationText').innerText = 'Aprovado';
+        } else if (data.situation === 'DISAPPROVED') {
+          document.getElementById('situation').style.color = '#DC3545';
+          document.getElementById('situationText').innerText = 'Recusado';
+        }
+      });
+  } catch (error) {
+    window.location.href = 'http://localhost:8080/error/error.html';
+  }
+}
+
+retrieveUserData();
+
 function save() {
   const dados = document.getElementsByClassName('lbl');
   for (let i = 0; i < dados.length; i += 1) {
@@ -67,64 +125,9 @@ function save() {
         document.querySelector('.nascimento').innerText = data.dateOfBirth.slice(0, 10).split('-').reverse().join('/');
         document.querySelector('.cpf').innerText = formatCPF(data.cpf);
         document.querySelector('.cargo').innerText = data.role;
+        retrieveUserData();
       });
   } catch (error) {
     window.location.href = 'http://localhost:8080/error/error.html';
   }
 }
-
-function change(event) {
-  const arquivoinserido = event.target;
-  const prever = document.getElementById('preverImage');
-
-  if (arquivoinserido.files.length > 0) {
-    const arquivo = arquivoinserido.files[0];
-    const leitor = new FileReader();
-    leitor.onload = (e) => {
-      prever.src = e.target.result;
-    };
-    leitor.readAsDataURL(arquivo);
-  } else {
-    console.log('Nenhum arquivo selecionado');
-  }
-}
-
-function retrieveUserData() {
-  try {
-    fetch('http://localhost:8080/user', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        document.getElementById('register').innerText = data.register;
-        document.getElementById('name').innerText = data.name;
-        document.getElementById('dateOfBirth').innerText = data.dateOfBirth.slice(0, 10).split('-').reverse().join('/');
-        document.getElementById('cpf').innerText = formatCPF(data.cpf);
-        document.getElementById('role').innerText = data.role;
-        document.getElementById('role2').innerText = data.role;
-        // change image, using the base64 file we have in data.image
-        document.getElementById('file').src = data.image;
-        if (data.type !== 'ADMIN') {
-          document.getElementById('only-admin').style.display = 'none';
-        }
-        if (data.situation === 'ANALYSIS') {
-          document.getElementById('situation').style.color = '#FFC107';
-          document.getElementById('situationText').innerText = 'Em análise';
-          document.querySelector('.edit-button').style.display = 'none';
-        } else if (data.situation === 'APPROVED') {
-          document.getElementById('situation').style.color = '#28A745';
-          document.getElementById('situationText').innerText = 'Aprovado';
-        } else if (data.situation === 'DISAPPROVED') {
-          document.getElementById('situation').style.color = '#DC3545';
-          document.getElementById('situationText').innerText = 'Recusado';
-        }
-      });
-  } catch (error) {
-    window.location.href = 'http://localhost:8080/error/error.html';
-  }
-}
-
-retrieveUserData();
