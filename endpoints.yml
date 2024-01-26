@@ -148,7 +148,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-    /admin/makeadmin:
+  /admin/makeadmin:
     post:
       tags:
         - admin
@@ -157,9 +157,8 @@ paths:
         required: true
         content:
           applications/json:
-            properties:
-              register:
-                type: integer
+            schema:
+              $ref: '#/components/schemas/MakeAdminInfo'
       responses:
         '200':
           description: User promoted to admin
@@ -261,3 +260,8 @@ components:
           enum:
             - APPROVED
             - DISAPPROVED
+    MakeAdminInfo:
+      type: object
+      properties:
+        register:
+          type: integer
