@@ -77,9 +77,9 @@ Preparar o aplicativo para implantação, configurando variáveis de ambiente e 
 
 # Diagrama de Arquitetura:
 
-![Diagrama](https://cdn.discordapp.com/attachments/1184622679685333042/1200446066357706772/Arquitetura_Micro.jpg?ex=65c63585&is=65b3c085&hm=d07386fd8ac0002972a3ec741e45975a5a94cfaddbedc17a17039735a87fb64a&)
+![Diagrama](https://cdn.discordapp.com/attachments/1184622679685333042/1200487248035061931/Arquitetura_Micro_1.jpg?ex=65c65bdf&is=65b3e6df&hm=7d331b7d6638451264c7ff38b6970c6b35d6eb5f40380cfe34ad30ded22bf062&)
 
-# Serviço de Aprovação do Administrador
+## Serviço de Aprovação do Administrador
 
 - Este serviço é responsável por gerenciar o fluxo de aprovação das atualizações realizadas pelos usuários no sistema.
 - Quando um usuário solicita uma modificação nas informações do crachá, como nome, cargo, foto, etc., essa solicitação é encaminhada para o serviço de aprovação do administrador.
@@ -87,7 +87,7 @@ Preparar o aplicativo para implantação, configurando variáveis de ambiente e 
 - Se a solicitação for aprovada, o serviço de aprovação atualiza as informações do crachá no sistema principal. Caso contrário, a solicitação é rejeitada e o usuário é notificado sobre o motivo da rejeição.
 - Esse serviço desempenha um papel fundamental na garantia da integridade e consistência dos dados do sistema, permitindo que apenas modificações autorizadas e validadas sejam aplicadas.
 
-# Sistema de Amostragem de Crachá Modificação de Informações
+## Sistema de Amostragem de Crachá Modificação de Informações
 
 - Este serviço é responsável por gerenciar a exibição e modificação das informações do crachá dos usuários no sistema.
 - Ele fornece uma interface para os usuários visualizarem seus dados de crachá, como nome, cargo, foto, entre outros. Além disso, permite que os usuários solicitem modificações nessas informações, como atualização de nome, cargo, foto, etc.
@@ -97,19 +97,19 @@ Preparar o aplicativo para implantação, configurando variáveis de ambiente e 
 
 ---
 
-# Comunicação entre Microsserviços:
+## Comunicação entre Microsserviços:
 
 Comunicação realizada através de protocolos REST.
 
 ---
 
-# Bancos de Dados:
+## Bancos de Dados:
 
 Utilização do PostgreSQL.
 
 ---
 
-# Conceitos Computacionais:
+## Conceitos Computacionais:
 
 - **Segurança (Security)**
 - **Latência (Latency)**
@@ -125,7 +125,7 @@ Utilização do PostgreSQL.
 
 ---
 
-# Ferramentas de API Gateway:
+## Ferramentas de API Gateway:
 
 - **API Gateway Flexível:** O Express Gateway permite configurar e gerenciar várias APIs e endpoints de forma centralizada. Ele atua como um ponto de entrada para as solicitações de clientes, roteando essas solicitações para os serviços apropriados.
 
@@ -135,6 +135,112 @@ Utilização do PostgreSQL.
 
 - **Escalabilidade e Desempenho:** O Express Gateway é construído sobre o Node.js e o Express.js, o que o torna altamente escalável e eficiente em termos de desempenho. Ele é capaz de lidar com um grande volume de solicitações de forma rápida e eficiente.
 
+### Endpoints:
+
+![Endpoints](https://cdn.discordapp.com/attachments/1184622679685333042/1200493457572118608/image.png?ex=65c661a8&is=65b3eca8&hm=8b8c80688a9a099a5bb1633fca809ad96e6c2dfa77bc645005c884cdb639428e&)
+
+#### Auth - Autenticação do usuário
+
+- **POST /auth/signup**: Registra um usuário.
+- **POST /auth/login**: Faz login de um usuário.
+
+#### User - Visualização e modificação das informações do jogador
+
+- **GET /user**: Mostra informações do usuário autenticado.
+- **PUT /user**: Edita informações do usuário autenticado.
+
+#### Admin - Aprovação e reprovação de solicitações de usuários
+
+- **POST /admin/review**: Aprova ou reprova solicitação de alteração do usuário.
+- **GET /admin/requests**: Obtém uma lista de todas as solicitações de alteração de usuário.
+- **POST /admin/makeadmin**: Promove um usuário a administrador.
+
+Estes endpoints descrevem as operações disponíveis para autenticação de usuários, visualização e edição de informações de jogador, além de aprovação e reprovação de solicitações de usuários por administradores.
+
+## Descrição dos Testes de Unidade
+
+### admin.test:
+
+- **Teste: should be able to approve user changes**
+  - **Propósito:** Verifica se um administrador pode aprovar as alterações de um usuário.
+  - **Entrada:** Requisição POST para '/admin/review' com informações de registro do usuário e situação aprovada.
+  - **Saída:** Resposta HTTP 200 com corpo da resposta.
+
+- **Teste: should be able to disapprove user changes**
+  - **Propósito:** Verifica se um administrador pode reprovar as alterações de um usuário.
+  - **Entrada:** Requisição POST para '/admin/review' com informações de registro do usuário e situação reprovada.
+  - **Saída:** Resposta HTTP 200 com corpo da resposta.
+
+- **Teste: should be able to list user requests**
+  - **Propósito:** Verifica se um administrador pode listar as solicitações de usuário.
+  - **Entrada:** Requisição GET para '/admin/requests'.
+  - **Saída:** Resposta HTTP 200 com corpo da resposta.
+
+- **Teste: should be able to promote user to admin**
+  - **Propósito:** Verifica se um administrador pode promover um usuário a administrador.
+  - **Entrada:** Requisição POST para '/admin/makeadmin' com informações de registro do usuário a ser promovido.
+  - **Saída:** Resposta HTTP 200 com corpo da resposta.
+
+### auth.test:
+
+- **Teste: should create a new user**
+  - **Propósito:** Verifica se um novo usuário pode ser criado.
+  - **Entrada:** Requisição POST para '/auth/signup' com informações do novo usuário.
+  - **Saída:** Resposta HTTP 201 com corpo da resposta.
+
+- **Teste: should login with the user**
+  - **Propósito:** Verifica se um usuário pode fazer login com sucesso.
+  - **Entrada:** Requisição POST para '/auth/login' com informações de registro e senha do usuário.
+  - **Saída:** Resposta HTTP 200.
+
+- **Teste: should not login with a wrong password**
+  - **Propósito:** Verifica se o login falha com uma senha incorreta.
+  - **Entrada:** Requisição POST para '/auth/login' com informações de registro e senha incorreta.
+  - **Saída:** Resposta HTTP 400.
+
+- **Teste: should not login with a wrong register**
+  - **Propósito:** Verifica se o login falha com um registro incorreto.
+  - **Entrada:** Requisição POST para '/auth/login' com registro incorreto.
+  - **Saída:** Resposta HTTP 400.
+
+### user.test:
+
+- **Teste: should get user info**
+  - **Propósito:** Verifica se as informações do usuário podem ser recuperadas com sucesso.
+  - **Entrada:** Requisição GET para '/user' com JWT autenticado.
+  - **Saída:** Resposta HTTP 200 com corpo da resposta.
+
+- **Teste: should edit user info**
+  - **Propósito:** Verifica se as informações do usuário podem ser editadas com sucesso.
+  - **Entrada:** Requisição PUT para '/user' com JWT autenticado e informações do usuário a serem editadas.
+  - **Saída:** Resposta HTTP 200 com corpo da resposta.
+
+- **Teste: should not get info of an unauthenticated user**
+  - **Propósito:** Verifica se o acesso às informações do usuário é negado sem autenticação.
+  - **Entrada:** Requisição GET para '/user' sem JWT.
+  - **Saída:** Resposta HTTP 401.
+
+- **Teste: should not get info of a user that does not exist**
+  - **Propósito:** Verifica se o acesso às informações do usuário é negado para um usuário que não existe.
+  - **Entrada:** Requisição GET para '/user' com JWT de um usuário inexistente.
+  - **Saída:** Resposta HTTP 404.
+
+- **Teste: should not edit info of an unauthenticated user**
+  - **Propósito:** Verifica se a edição das informações do usuário é negada sem autenticação.
+  - **Entrada:** Requisição PUT para '/user' sem JWT.
+  - **Saída:** Resposta HTTP 401.
+
+- **Teste: should not edit info of a user with missing fields**
+  - **Propósito:** Verifica se a edição das informações do usuário é negada se campos obrigatórios estiverem ausentes.
+  - **Entrada:** Requisição PUT para '/user' com JWT e informações do usuário com campos ausentes.
+  - **Saída:** Resposta HTTP 400.
+
+- **Teste: should not edit info of a user in 'ANALYSIS' situation**
+  - **Propósito:** Verifica se a edição das informações do usuário é negada se o usuário estiver em situação de análise.
+  - **Entrada:** Requisição PUT para '/user' com JWT de um usuário em situação de análise.
+  - **Saída:** Resposta HTTP 403.
+
+Estes testes abrangem uma variedade de cenários para garantir que a aplicação funcione conforme o esperado e que as regras de negócio sejam aplicadas corretamente.
 ## Para ligar o projeto:
 
 1. **npm i**:
